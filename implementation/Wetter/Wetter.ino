@@ -17,8 +17,8 @@
 #include <Wire.h>
 #include <SHT21.h>
 
-const int sda_pin = 2;
-const int scl_pin = 4;
+const int sda_pin = D2;
+const int scl_pin = D4;
 
 SHT21 sht; // I2C
 
