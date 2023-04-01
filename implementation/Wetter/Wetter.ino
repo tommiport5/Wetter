@@ -1,21 +1,11 @@
 /***************************************************************************
-  This is a library for the SHT21 humidity, temperature & pressure sensor
-
- Based on an example made by adafruit
-  ----> http://www.adafruit.com/products/2650
-
-
-  Adafruit invests time and resources providing this open source code,
-  please support Adafruit andopen-source hardware by purchasing products
-  from Adafruit!
-
-  Written by Limor Fried & Kevin Townsend for Adafruit Industries.
-  BSD license, all text above must be included in any redistribution
-  See the LICENSE file for details.
+This is a webserver that shows humidity and temperature
  ***************************************************************************/
 
 #include <Wire.h>
 #include <SHT21.h>
+#include "ServerWrapper.h"
+
 
 const int sda_pin = D2;
 const int scl_pin = D4;
@@ -23,6 +13,8 @@ const int scl_pin = D4;
 SHT21 sht; // I2C
 
 unsigned long delayTime = 1000;
+
+extern int demo();
 
 void setup() {
     Serial.begin(115200);
@@ -45,6 +37,7 @@ void setup() {
 
 void loop() { 
     printValues();
+    demo();
     delay(delayTime);
 }
 
