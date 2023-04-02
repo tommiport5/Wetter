@@ -26,12 +26,6 @@ public:
   void handleClient() {_server.handleClient();};
   void send(int, const char*, const std::string &);
 
-	template<class index=std::string, class callable, class... Ts>
-	void execute(index ix, callable func, Ts... args) {
-		Serial.print(ix); Serial.println(" will trigger ");
-		func(std::forward<decltype(args)>(args)...);
-	};
-
 	template<class index=std::string, class callable>
 	void answer(index ix, callable func) {
     _server.on(ix, [func, this]() {

@@ -39,16 +39,3 @@ void ServerWrapper::begin() {
   }
 }
 
-void tunix(const string &wem) {
-	Serial.println("Ich will bloß spielen");
-}
-/*
-int demo() {
-	s2f.execute("spielen", tunix, "franz");
-	s2f.execute("arbeiten",
-			[](const char * wem) {
-				Serial.print("Arbeiten will ich mit ");Serial.println(wem);
-			}, "fritz");
-	return 0;
-}
-*/
