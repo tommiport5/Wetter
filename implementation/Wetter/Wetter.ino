@@ -7,7 +7,6 @@ This is a webserver that shows humidity and temperature
 #include "ServerWrapper.h"
 #include "StringTpl.h"
 #include <utility>
-#include <cstdlib>
 
 #include "local.h"
 
@@ -29,6 +28,7 @@ std::string WelcomePage = {
   "</body>"
   "</html>"
 };
+
 const StringTpl TempPage = StringTpl(
   "<html>"
   "<head>"
@@ -48,13 +48,26 @@ void welcome(ServerWrapper *srv) {
   srv->send(200, "text/html", WelcomePage);
 }
 
+
+static std::string to_string(int val){
+  char tmp[16];
+
+  snprintf(tmp, 16, "%d", val);
+  return tmp;
+}
+static std::string to_string(double val){
+  char tmp[16];
+
+  snprintf(tmp, 16, "%.1f", val);
+  return tmp;
+}
+
 StringTpl::map_t &&buildDataMap(StringTpl::map_t &dm) {
   StringTpl::map_t loc;
   static int count = 1;
-  char tmp[16];
-  loc["temp"] = sht.getTemperature();
-  loc["hum"] = sht.getHumidity();
-  loc["count"] = itoa(count++, tmp, 10);
+  loc["temp"] = to_string(sht.getTemperature());
+  loc["hum"] = to_string(sht.getHumidity());
+  loc["count"] = to_string(count++);
   std::swap(loc, dm);
   return move(dm);
 }

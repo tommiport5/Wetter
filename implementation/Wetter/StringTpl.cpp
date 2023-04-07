@@ -5,7 +5,6 @@
  *      Author: Dad
  */
 #include "StringTpl.h"
-#include <iostream>
 
 StringTpl::StringTpl(const std::string &tpl) :
 		_tpl(tpl)
